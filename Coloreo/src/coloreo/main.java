@@ -6,7 +6,7 @@ import java.util.Collections;
 public class main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		
+		int cc;
 		Grafos grafo = new Grafos("Nodos.txt");
 		
 		grafo.grados();
@@ -14,6 +14,9 @@ public class main {
 //		grafo.mostrarGrafos();
 		grafo.colorear();
 		grafo.mostrarGrafos();
+		
+		grafo.grabar();
+		
 		
 	}
 

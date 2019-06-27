@@ -11,6 +11,8 @@ import java.util.List;
 public class Grafos {
 	private int[][] matrizAdyacencia;
 	List<Nodo> Lista;
+	private  int cantiColores;
+	private int cantidadNodos;
 
 	public Grafos() {
 	}
@@ -20,6 +22,7 @@ public class Grafos {
 		Scanner sc = new Scanner(new File(path));
 
 		int cant = sc.nextInt();
+		cantidadNodos = cant;
 		matrizAdyacencia = new int[cant][cant];
 
 		Lista = new ArrayList<Nodo>();
@@ -38,7 +41,7 @@ public class Grafos {
 			}
 			Lista.add(nodo);
 		}
-
+		sc.close();
 	}
 
 	public void mostrarGrafos() {
@@ -72,12 +75,13 @@ public class Grafos {
 		return -1;
 	}
 
-	public void colorear() {
+	public void  colorear() {
 		int pinto = 0;
 		int color = 1;
 		int primero = 1;
 		int cant = 0;
-
+		int cc = 1;
+		
 		while (cant < Lista.size()) {
 			pinto = 0;
 			if (primero == 1) {
@@ -93,6 +97,7 @@ public class Grafos {
 						if (Lista.get(j).getColor() > 0) {
 							int n = Lista.get(j).getColor()+1;
 						Lista.get(cant).setColor(n);
+						cc++;
 						pinto = 1;
 						}
 						
@@ -105,14 +110,27 @@ public class Grafos {
 			
 				cant++;
 		}
+		cantColores();
 	}
 	
+	public void cantColores() {
+		int cant = 0;
+		for(Nodo nodo: Lista) {
+			cant = nodo.getColor();	
+			
+		}
+		
+		cantiColores= cant;
+	}
 	public void grabar() throws FileNotFoundException {
 		
 		PrintWriter salida = new PrintWriter(new File("salida.txt"));
 		
-		
-		
+		salida.println(cantidadNodos + " " + cantiColores);
+		for(Nodo nodo : Lista) {
+			salida.println( nodo.getNroGrafo() + " " + nodo.getColor() );
+		}
+		salida.close();
 		
 	}
 }
