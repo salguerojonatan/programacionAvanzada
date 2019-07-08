@@ -124,11 +124,12 @@ public class Grafos {
 	}
 	public void grabar() throws FileNotFoundException {
 		
+		String[] color = {"R","V","N","A"};
 		PrintWriter salida = new PrintWriter(new File("salida.txt"));
 		
 		salida.println(cantidadNodos + " " + cantiColores);
 		for(Nodo nodo : Lista) {
-			salida.println( nodo.getNroGrafo() + " " + nodo.getColor() );
+			salida.println( nodo.getNroGrafo() + " " + color[nodo.getColor()-1] );
 		}
 		salida.close();
 		
