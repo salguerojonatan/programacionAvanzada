@@ -39,6 +39,14 @@ public class Aristas implements Comparable<Aristas> {
 		this.peso = peso;
 	}
 
+	
+	public int compareTo1(Aristas o) {
+		if (this.nodo1 < o.nodo1)
+			return 1;
+		else
+			return -1;
+	}
+	
 	@Override
 	public int compareTo(Aristas o) {
 		
